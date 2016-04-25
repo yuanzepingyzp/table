@@ -1,0 +1,18 @@
+h1{
+  text-align: center;
+}
+
+#tablehead{
+  background-color: black;
+  color:white;
+}
+
+td:hover{
+  background-color: #ED511C;
+  color: white;
+}
+
+#result{
+  background-color: gray;
+  color:white;
+}
