@@ -3,13 +3,13 @@
 <head>
       <meta charset="utf-8">
       <title>成绩处理表单</title>
-      <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://cdn.bootcss.com/normalize/4.1.1/normalize.css" rel="stylesheet">
       <link href="style.css" rel="stylesheet">
       <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
       <script src="handle.js"></script>
 </head>
 <body  ng-app="myapp" ng-controller="myctrl">
-<header><h1>学生成绩处理表</h1></header>
+<header><h1>学生成绩处理系统</h1></header>
 <table class="table">
 <tr id="tablehead">
     <td ng-click="orderbyname()">姓名</td>
@@ -57,7 +57,7 @@
     <button type="button" ng-click="changeishide()">搜索</button>
     <button type="button" ng-click="prevarray()" ng-disabled="isfirst()">上一页</button>
     <button type="button" ng-click="nextarray()" ng-disabled="islast()">下一页</button>
-    <button type="button" ng-click="changebox()">增加新成员</button>
+    <button type="button" ng-click="changebox()">+</button>
 </div>
 
 </body>
