@@ -19,24 +19,45 @@
     <td ng-click="orderbyenglish()">英语</td>
 </tr>
 <tr ng-hide="ishide">
-  <td><input placeholder="按姓名搜索"></input><button>确定</button></td>
-  <td><input placeholder="按学号搜索"></input><button>确定</button></td>
-  <td><input placeholder="按数学搜索"></input><button>确定</button></td>
-  <td><input placeholder="按语文搜索"></input><button>确定</button></td>
-  <td><input placeholder="按英语搜索"></input><button>确定</button></td>
+  <td><input placeholder="按姓名搜索" ng-model="key" ng-change="searchname()"></input></td>
+  <td><input placeholder="按学号搜索" ng-model="key1" ng-change="searchid()"></input></td>
+  <td><input placeholder="按数学搜索" ng-model="key2" ng-change="searchmath()"></input></td>
+  <td><input placeholder="按语文搜索" ng-model="key3" ng-change="searchchinese()"></input></td>
+  <td><input placeholder="按英语搜索" ng-model="key4" ng-change="searchenglish()"></input></td>
 </tr>
 <tr ng-repeat="x in showstu">
-  <td>{{x.name}}</td>
-  <td>{{x.id}}</td>
-  <td>{{x.math}}</td>
-  <td>{{x.chinese}}</td>
-  <td>{{x.english}}</td>
+  <td class="data">{{x.name}}</td>
+  <td class="data">{{x.id}}</td>
+  <td class="data">{{x.math}}</td>
+  <td class="data">{{x.chinese}}</td>
+  <td class="data">{{x.english}}</td>
 </tr>
 </table>
+<div class="boxbg" ng-hide="boxhide">
+</div>
+<div class="addbox" ng-hide="boxhide">
+<h3>增加新成员</h3>
+<form>
+  姓名：<input name="name"></input>
+  <br>
+  学号：<input name="id"></input>
+  <br>
+  数学：<input name="math"></input>
+  <br>
+  语文：<input name="chinese"></input>
+  <br>
+  英语：<input name="english"></input>
+  <br>
+  <button type="submit">提交</button>
+  <button type="reset">重置</button>
+  <button id="closebutton" ng-click="changebox()">关闭</button>
+</form>
+</div>
 <div id="tool">
     <button type="button" ng-click="changeishide()">搜索</button>
     <button type="button" ng-click="prevarray()" ng-disabled="isfirst()">上一页</button>
     <button type="button" ng-click="nextarray()" ng-disabled="islast()">下一页</button>
+    <button type="button" ng-click="changebox()">增加新成员</button>
 </div>
 
 </body>

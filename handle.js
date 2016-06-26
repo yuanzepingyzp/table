@@ -1,26 +1,10 @@
 var app=angular.module('myapp',[]);
-app.controller('myctrl',function($scope,$filter){
-  $scope.stu=[
-      {name:"孙行者",id:1261710125, math:100,chinese:80,english:70},
-      {name:"者行孙",id:1261710126, math:90,chinese:85,english:75},
-      {name:"行者孙",id:1261710127, math:80,chinese:90,english:85},
-      {name:"孙悟空",id:1261710128, math:100,chinese:80,english:65},
-      {name:"悟空孙",id:1261710129, math:90,chinese:85,english:80},
-      {name:"悟空孙",id:1261710130, math:80,chinese:90,english:80},
-      {name:"猪五戒",id:1261710131, math:60,chinese:80,english:95},
-    {name:"猪六戒",id:1261710132, math:70,chinese:85,english:100},
-    {name:"猪七戒",id:1261710133, math:60,chinese:90,english:90},
-    {name:"猪八戒",id:1261710134, math:80,chinese:80,english:95},
-    {name:"猪九戒",id:1261710135, math:70,chinese:85,english:100},
-    {name:"猪十戒",id:1261710136, math:50,chinese:90,english:90},
-      {name:"唐三藏",id:1261710137, math:60,chinese:85,english:95},
-    {name:"唐四藏",id:1261710138, math:60,chinese:85,english:100},
-    {name:"唐五藏",id:1261710139, math:60,chinese:90,english:90},
-    {name:"唐六藏",id:1261710140, math:70,chinese:100,english:95},
-    {name:"唐七藏",id:1261710141, math:70,chinese:100,english:100},
-    {name:"唐八藏",id:1261710142, math:70,chinese:100,english:90}
-  ];
-  $scope.showstu=$scope.stu.slice(0,6);
+app.controller('myctrl',function($scope,$http,$filter){
+  $http.get("data.json").success(function(response){
+    $scope.stu=response.data;
+      $scope.showstu=$scope.stu.slice(0,6);
+  })
+  
   $scope.isreverse=false;
   $scope.orderbyname=function(){
     $scope.stu=$filter('orderBy')($scope.stu,'name',$scope.isreverse);
@@ -75,4 +59,47 @@ app.controller('myctrl',function($scope,$filter){
        return false;
      }
    };
+   $scope.searchname=function(){
+      if($scope.key!="")
+      $scope.showstu=$filter('filter')($scope.stu,{name:$scope.key});
+      else {
+        $scope.showstu=$scope.stu.slice($scope.pagenumber,$scope.pagenumber+6);
+      }
+
+   }
+   $scope.searchid=function(){
+      if($scope.key1!="")
+      $scope.showstu=$filter('filter')($scope.stu,{id:$scope.key1});
+      else {
+        $scope.showstu=$scope.stu.slice($scope.pagenumber,$scope.pagenumber+6);
+      }
+
+   }
+   $scope.searchmath=function(){
+      if($scope.key2!="")
+      $scope.showstu=$filter('filter')($scope.stu,{math:$scope.key2});
+      else {
+        $scope.showstu=$scope.stu.slice($scope.pagenumber,$scope.pagenumber+6);
+      }
+
+   }
+   $scope.searchchinese=function(){
+      if($scope.key3!="")
+      $scope.showstu=$filter('filter')($scope.stu,{chinese:$scope.key3});
+      else {
+        $scope.showstu=$scope.stu.slice($scope.pagenumber,$scope.pagenumber+6);
+      }
+
+   }
+   $scope.searchenglish=function(){
+      if($scope.key4!="")
+      $scope.showstu=$filter('filter')($scope.stu,{english:$scope.key4});
+      else {
+        $scope.showstu=$scope.stu.slice($scope.pagenumber,$scope.pagenumber+6);
+      }
+   }
+   $scope.boxhide=true;
+   $scope.changebox=function(){
+     $scope.boxhide=!($scope.boxhide);
+   }
 });
